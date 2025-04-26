@@ -8,9 +8,9 @@ import cn from 'classnames';
 // const SORT_BY_LENGTH = 'length';
 
 enum SortType {
-  classic = 'NO_SORT',
+  Classic = 'NO_SORT',
   Abc = 'SORT_ABC',
-  lenght = 'SORT_BY_LENGTH',
+  Length = 'SORT_BY_LENGTH',
 }
 
 export const goodsFromServer = [
@@ -34,7 +34,7 @@ function getItems(items: string[], sortingFlag: SortType, isReverse: boolean) {
       switch (sortingFlag) {
         case SortType.Abc:
           return item1.localeCompare(item2);
-        case SortType.lenght:
+        case SortType.Length:
           return item1.length - item2.length;
         default:
           return 0;
@@ -50,7 +50,7 @@ function getItems(items: string[], sortingFlag: SortType, isReverse: boolean) {
 }
 
 export const App: React.FC = () => {
-  const [sortFlag, setSortFlag] = useState(SortType.classic);
+  const [sortFlag, setSortFlag] = useState(SortType.Classic);
   const [isReverse, setIsReverse] = useState(false);
   const visibleItems = getItems(goodsFromServer, sortFlag, isReverse);
 
@@ -70,9 +70,9 @@ export const App: React.FC = () => {
         <button
           type="button"
           className={cn('button', 'is-success', {
-            'is-light': sortFlag !== SortType.lenght,
+            'is-light': sortFlag !== SortType.Length,
           })}
-          onClick={() => setSortFlag(SortType.lenght)}
+          onClick={() => setSortFlag(SortType.Length)}
         >
           Sort by length
         </button>
@@ -87,12 +87,12 @@ export const App: React.FC = () => {
           Reverse
         </button>
 
-        {isReverse || sortFlag !== SortType.classic ? (
+        {isReverse || sortFlag !== SortType.Classic ? (
           <button
             type="button"
             className="button is-danger is-light"
             onClick={() => {
-              setSortFlag(SortType.classic);
+              setSortFlag(SortType.Classic);
               setIsReverse(false);
             }}
           >
